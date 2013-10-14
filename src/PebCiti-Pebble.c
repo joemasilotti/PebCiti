@@ -6,18 +6,23 @@
 
 PBL_APP_INFO(MY_UUID, "PebCiti", "Masilotti.com", 1, 0, DEFAULT_MENU_ICON, APP_INFO_STANDARD_APP);
 
-Window window;
-
-void handle_init(AppContextRef ctx)
+static struct PebCitiData
 {
-  window_init(&window, "Window Name");
-  window_stack_push(&window, true);
+  Window window;
+} s_data;
+
+static void peb_citi_init(AppContextRef context)
+{
+  Window *window = &s_data.window;
+  window_init(window, "PebCiti");
+
+  window_stack_push(window, true);
 }
 
 void pbl_main(void *params)
 {
   PebbleAppHandlers handlers = {
-    .init_handler = &handle_init
+    .init_handler = &peb_citi_init
   };
   app_event_loop(params, &handlers);
 }
