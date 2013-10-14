@@ -9,16 +9,41 @@ PBL_APP_INFO(MY_UUID, "PebCiti", "Masilotti.com", 1, 0, DEFAULT_MENU_ICON, APP_I
 static struct PebCitiData
 {
     Window window;
+    TextLayer text_layer;
     AppSync sync;
     uint8_t sync_buffer[32];
 } s_data;
+
+enum {
+    PEB_CITI_TEXT_KEY = 0x1
+};
+
+static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tuple, const Tuple *old_tuple, void *context)
+{
+    text_layer_set_text(&s_data.text_layer, new_tuple->value->cstring);
+}
 
 static void peb_citi_init(AppContextRef context)
 {
     Window *window = &s_data.window;
     window_init(window, "PebCiti");
 
-    app_sync_init(&s_data.sync, s_data.sync_buffer, sizeof(s_data.sync_buffer), NULL, 0, NULL, NULL, NULL);
+    text_layer_init(&s_data.text_layer, GRect(0, 100, 144, 68));
+    layer_add_child(&window->layer, &s_data.text_layer.layer);
+    text_layer_set_text_alignment(&s_data.text_layer, GTextAlignmentCenter);
+
+    Tuplet initial_values[] = {
+        TupletCString(PEB_CITI_TEXT_KEY, "<empty>")
+    };
+
+    app_sync_init(&s_data.sync,
+                  s_data.sync_buffer,
+                  sizeof(s_data.sync_buffer),
+                  initial_values,
+                  ARRAY_LENGTH(initial_values),
+                  sync_tuple_changed_callback,
+                  NULL,
+                  NULL);
 
     window_stack_push(window, true);
 }
@@ -32,7 +57,13 @@ void pbl_main(void *params)
 {
     PebbleAppHandlers handlers = {
         .init_handler = &peb_citi_init,
-        .deinit_handler = &peb_citi_deinit
+        .deinit_handler = &peb_citi_deinit,
+        .messaging_info = {
+            .buffer_sizes = {
+                .inbound = 64,
+                .outbound = 16
+            }
+        }
     };
     app_event_loop(params, &handlers);
 }
