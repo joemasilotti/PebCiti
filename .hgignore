@@ -1,5 +1,5 @@
-# OS X files
-.DS_Store
+# Use glob syntax.
+syntax: glob
 
 # waf build tool generated files
 .waf*
@@ -13,10 +13,6 @@ tools
 include
 lib
 pebble_app.ld
-
-# Xcode user files
-xcode/PebCiti-Pebble.xcodeproj/project.xcworkspace/
-xcode/PebCiti-Pebble.xcodeproj/xcuserdata/
 
 # Other generated files
 serial_dump.txt
