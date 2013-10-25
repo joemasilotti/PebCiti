@@ -1,0 +1,15 @@
+{
+  "uuid":"f6bb82d0-b5bf-4ec7-a97a-405d3a350444",
+  "shortName":"PebCiti",
+  "longName":"PebCiti",
+  "companyName":"Masilotti.com",
+  "versionCode":1,
+  "versionLabel":"1.0.0",
+  "watchapp":{
+    "watchface":false
+  },
+  "appKeys":{ },
+  "resources":{
+    "media":[ ]
+  }
+}
