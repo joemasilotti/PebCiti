@@ -4,16 +4,28 @@
 
 static Window *window;
 static TextLayer *text_layer;
+static uint8_t vibrate;
 static AppSync sync;
 static uint8_t sync_buffer[32];
 
 enum PebCitiKey {
-    PEB_CITI_TEXT_KEY = 0x1
+    PEB_CITI_TEXT_KEY = 0x1,
+    PEB_CITI_VIBRATE_KEY = 0x2
 };
 
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tuple, const Tuple *old_tuple, void *context)
 {
-    text_layer_set_text(text_layer, new_tuple->value->cstring);
+    switch (key) {
+        case PEB_CITI_TEXT_KEY:
+            text_layer_set_text(text_layer, new_tuple->value->cstring);
+            if (vibrate == 1) {
+                vibes_short_pulse();
+            }
+            break;
+        case PEB_CITI_VIBRATE_KEY:
+            vibrate = new_tuple->value->uint8;
+            break;
+    }
 }
 
 static void window_load(Window *window)
@@ -38,8 +50,11 @@ static void init()
         .unload = window_unload
     });
 
+    vibrate = 0;
+
     Tuplet initial_values[] = {
-        TupletCString(PEB_CITI_TEXT_KEY, "<empty>")
+        TupletCString(PEB_CITI_TEXT_KEY, "..."),
+        TupletInteger(PEB_CITI_VIBRATE_KEY, (uint8_t) 0)
     };
 
     const int inbound_size = 64;
