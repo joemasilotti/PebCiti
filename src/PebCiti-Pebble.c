@@ -24,6 +24,9 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tup
             break;
         case PEB_CITI_VIBRATE_KEY:
             vibrate = new_tuple->value->uint8;
+            if (vibrate == 1) {
+                vibes_short_pulse();
+            }
             break;
     }
 }
