@@ -35,7 +35,8 @@ static void window_load(Window *window)
 {
     Layer *window_layer = window_get_root_layer(window);
 
-    text_layer = text_layer_create(GRect(0, 100, 144, 68));
+    text_layer = text_layer_create(GRect(5, 10, 134, 200));
+    text_layer_set_font(text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
     text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
     layer_add_child(window_layer, text_layer_get_layer(text_layer));
 }
