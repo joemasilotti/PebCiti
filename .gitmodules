@@ -1,0 +1,6 @@
+[submodule "iOS"]
+	path = iOS
+	url = https://github.com/joemasilotti/PebCiti-iOS
+[submodule "Pebble"]
+	path = Pebble
+	url = https://github.com/joemasilotti/PebCiti-Pebble
