@@ -1,4 +1,4 @@
-# PebCiti
+# ![iOS Icon](https://raw.github.com/joemasilotti/PebCiti/master/Icons/iOS.png) PebCiti
 
 A simple iOS app to show the nearest available [CitiBike NYC](http://citibikenyc.com/) dock on your [Pebble](https://getpebble.com/).
 
