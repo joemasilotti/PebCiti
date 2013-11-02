@@ -23,7 +23,7 @@ Open one of the following links on your iPhone.
 
 # PebCiti-Pebble
 
-Pebble half of PebCiti ([iOS half](https://github.com/joemasilotti/PebCiti-iOS)), a simple app to show the nearest available [CitiBike NYC](http://citibikenyc.com/) dock on your [Pebble](https://getpebble.com/).
+Pebble half of [PebCiti](http://github.com/joemasilotti/PebCiti) ([iOS half](https://github.com/joemasilotti/PebCiti-iOS)), a simple app to show the nearest available [CitiBike NYC](http://citibikenyc.com/) dock on your [Pebble](https://getpebble.com/).
 
 **UUID**: F6BB82D0-B5BF-4EC7-A97A-405D3A350444
 
