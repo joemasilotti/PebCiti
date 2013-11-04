@@ -5,4 +5,4 @@ cd ..
 if [ -z $ACTION ]; then
     ACTION=build
 fi
-./waf $ACTION
+pebble $ACTION
