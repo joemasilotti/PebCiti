@@ -11,26 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000027100000000562001039 /* pebble_app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pebble_app.h; sourceTree = "<group>"; };
-		000027100000000562001040 /* pebble_app_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pebble_app_info.h; sourceTree = "<group>"; };
-		000027100000000562001041 /* pebble_fonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pebble_fonts.h; sourceTree = "<group>"; };
-		000027100000000562001042 /* pebble_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pebble_os.h; sourceTree = "<group>"; };
-		000027100000000562001043 /* pebble_os.h.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pebble_os.h.orig; sourceTree = "<group>"; };
-		000027100000000562001045 /* libpebble.a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libpebble.a; sourceTree = "<group>"; };
-		000027100000000562001046 /* pebble_app.ld */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pebble_app.ld; sourceTree = "<group>"; };
-		000027100000000562001049 /* resource_map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = resource_map.json; sourceTree = "<group>"; };
-		000027100000000562001050 /* wscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wscript; sourceTree = "<group>"; };
-		000027100000000562001052 /* PebCiti-Pebble.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "PebCiti-Pebble.c"; sourceTree = "<group>"; };
-		000027100000000562001054 /* bitmapgen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bitmapgen.py; sourceTree = "<group>"; };
-		000027100000000562001056 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = __init__.py; sourceTree = "<group>"; };
-		000027100000000562001057 /* fontgen.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontgen.py; sourceTree = "<group>"; };
-		000027100000000562001058 /* generate_resource_code.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generate_resource_code.py; sourceTree = "<group>"; };
-		000027100000000562001059 /* mkbundle.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mkbundle.py; sourceTree = "<group>"; };
-		000027100000000562001060 /* pbpack_meta_data.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pbpack_meta_data.py; sourceTree = "<group>"; };
-		000027100000000562001061 /* stm32_crc.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stm32_crc.py; sourceTree = "<group>"; };
-		000027100000000562001062 /* stm32_crc.pyc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stm32_crc.pyc; sourceTree = "<group>"; };
-		000027100000000562001063 /* waf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = waf; sourceTree = "<group>"; };
-		000027100000000562001064 /* wscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wscript; sourceTree = "<group>"; };
+		000027100000000562001052 /* PebCiti-Pebble.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "PebCiti-Pebble.c"; path = "src/PebCiti-Pebble.c"; sourceTree = "<group>"; };
 		84215BBF181D3981008E04FA /* index_dummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = index_dummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84215BC1181D3981008E04FA /* clar_tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = clar_tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84215BC2181D39BF008E04FA /* appinfo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = appinfo.json; sourceTree = "<group>"; };
@@ -40,95 +21,12 @@
 		000027100000000562001003 /* PebCiti-Pebble */ = {
 			isa = PBXGroup;
 			children = (
-				000027100000000562001004 /* out */,
-				000027100000000562001038 /* include */,
-				000027100000000562001044 /* lib */,
-				000027100000000562001046 /* pebble_app.ld */,
-				000027100000000562001047 /* resources */,
-				000027100000000562001051 /* src */,
-				000027100000000562001053 /* tools */,
-				000027100000000562001063 /* waf */,
-				000027100000000562001064 /* wscript */,
+				000027100000000562001052 /* PebCiti-Pebble.c */,
 				84215BC2181D39BF008E04FA /* appinfo.json */,
 				84215BC0181D3981008E04FA /* Products */,
 			);
 			name = "PebCiti-Pebble";
 			path = ../;
-			sourceTree = "<group>";
-		};
-		000027100000000562001004 /* out */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = out;
-			sourceTree = "<group>";
-		};
-		000027100000000562001038 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001039 /* pebble_app.h */,
-				000027100000000562001040 /* pebble_app_info.h */,
-				000027100000000562001041 /* pebble_fonts.h */,
-				000027100000000562001042 /* pebble_os.h */,
-				000027100000000562001043 /* pebble_os.h.orig */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		000027100000000562001044 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001045 /* libpebble.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		000027100000000562001047 /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001048 /* src */,
-				000027100000000562001050 /* wscript */,
-			);
-			path = resources;
-			sourceTree = "<group>";
-		};
-		000027100000000562001048 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001049 /* resource_map.json */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		000027100000000562001051 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001052 /* PebCiti-Pebble.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		000027100000000562001053 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001054 /* bitmapgen.py */,
-				000027100000000562001055 /* font */,
-				000027100000000562001058 /* generate_resource_code.py */,
-				000027100000000562001059 /* mkbundle.py */,
-				000027100000000562001060 /* pbpack_meta_data.py */,
-				000027100000000562001061 /* stm32_crc.py */,
-				000027100000000562001062 /* stm32_crc.pyc */,
-			);
-			path = tools;
-			sourceTree = "<group>";
-		};
-		000027100000000562001055 /* font */ = {
-			isa = PBXGroup;
-			children = (
-				000027100000000562001056 /* __init__.py */,
-				000027100000000562001057 /* fontgen.py */,
-			);
-			path = font;
 			sourceTree = "<group>";
 		};
 		84215BC0181D3981008E04FA /* Products */ = {
