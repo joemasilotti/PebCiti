@@ -336,6 +336,7 @@
 		000027100000000562001000 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 000027100000000562001002 /* Build configuration list for PBXProject "PebCiti-Pebble" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -469,6 +470,7 @@
 		000027100000000562001066 /* waf */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../src/**";
 				PRODUCT_NAME = index_dummy;
