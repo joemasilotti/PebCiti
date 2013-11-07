@@ -7,7 +7,7 @@ static TextLayer *focus_layer;
 static TextLayer *station_layer;
 static uint8_t vibrate;
 static AppSync sync;
-static uint8_t sync_buffer[144];
+static uint8_t sync_buffer[124];
 
 enum PebCitiKey {
     PEB_CITI_FOCUS_KEY = 0x0,
