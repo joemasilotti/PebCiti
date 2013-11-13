@@ -68,7 +68,7 @@ static void init()
         TupletInteger(PEB_CITI_VIBRATE_KEY, (uint8_t) 0)
     };
 
-    const int inbound_size = 128;
+    const int inbound_size = 124;
     const int outbound_size = 16;
     app_message_open(inbound_size, outbound_size);
 
