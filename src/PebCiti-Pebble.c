@@ -3,21 +3,35 @@
 static Window *window;
 static TextLayer *focus_layer;
 static TextLayer *station_layer;
+static uint8_t focusIsBike;
 static uint8_t vibrate;
 static AppSync sync;
 static uint8_t sync_buffer[124];
 
 enum PebCitiKey {
-    PEB_CITI_FOCUS_KEY = 0x0,
+    PEB_CITI_FOCUS_IS_BIKE_KEY = 0x0,
     PEB_CITI_STATION_KEY = 0x1,
     PEB_CITI_VIBRATE_KEY = 0x2
 };
 
+static void set_focus(uint8_t newFocusIsBike)
+{
+    char *focusText;
+    if (newFocusIsBike == 1) {
+        focusIsBike = 1;
+        focusText = "Closest Available Bike:";
+    } else {
+        focusIsBike = 0;
+        focusText = "Closest Open Dock:";
+    }
+    text_layer_set_text(focus_layer, focusText);
+}
+
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tuple, const Tuple *old_tuple, void *context)
 {
     switch (key) {
-        case PEB_CITI_FOCUS_KEY:
-            text_layer_set_text(focus_layer, new_tuple->value->cstring);
+        case PEB_CITI_FOCUS_IS_BIKE_KEY:
+            set_focus(new_tuple->value->uint8);
             break;
         case PEB_CITI_STATION_KEY:
             text_layer_set_text(station_layer, new_tuple->value->cstring);
@@ -60,12 +74,13 @@ static void init()
         .unload = window_unload
     });
 
+    focusIsBike = 1;
     vibrate = 0;
 
     Tuplet initial_values[] = {
-        TupletCString(PEB_CITI_FOCUS_KEY, "Closest Available Bike:"),
+        TupletInteger(PEB_CITI_FOCUS_IS_BIKE_KEY, (uint8_t)focusIsBike),
         TupletCString(PEB_CITI_STATION_KEY, "Wating for iPhone app..."),
-        TupletInteger(PEB_CITI_VIBRATE_KEY, (uint8_t) 0)
+        TupletInteger(PEB_CITI_VIBRATE_KEY, (uint8_t)vibrate)
     };
 
     const int inbound_size = 124;
