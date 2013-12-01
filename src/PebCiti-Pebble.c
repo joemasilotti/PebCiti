@@ -46,6 +46,18 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tup
     }
 }
 
+void select_single_click_handler(ClickRecognizerRef recognizer, void *context)
+{
+    uint8_t newFocus = focusIsBike ? 0 : 1;
+    Tuplet new_tuple[] = { TupletInteger(0, newFocus) };
+    app_sync_set(&sync, new_tuple, ARRAY_LENGTH(new_tuple));
+}
+
+static void click_config_provider(Window *window)
+{
+    window_single_click_subscribe(BUTTON_ID_SELECT, select_single_click_handler);
+}
+
 static void window_load(Window *window)
 {
     Layer *window_layer = window_get_root_layer(window);
@@ -58,6 +70,8 @@ static void window_load(Window *window)
     text_layer_set_font(station_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
     text_layer_set_text_alignment(station_layer, GTextAlignmentCenter);
     layer_add_child(window_layer, text_layer_get_layer(station_layer));
+
+    window_set_click_config_provider(window, (ClickConfigProvider) click_config_provider);
 }
 
 static void window_unload(Window *window)
@@ -78,9 +92,9 @@ static void init()
     vibrate = 0;
 
     Tuplet initial_values[] = {
-        TupletInteger(PEB_CITI_FOCUS_IS_BIKE_KEY, (uint8_t)focusIsBike),
+        TupletInteger(PEB_CITI_FOCUS_IS_BIKE_KEY, focusIsBike),
         TupletCString(PEB_CITI_STATION_KEY, "Wating for iPhone app..."),
-        TupletInteger(PEB_CITI_VIBRATE_KEY, (uint8_t)vibrate)
+        TupletInteger(PEB_CITI_VIBRATE_KEY, vibrate)
     };
 
     const int inbound_size = 124;
