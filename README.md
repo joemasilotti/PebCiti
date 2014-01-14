@@ -39,3 +39,4 @@ Open one of the following links on your iPhone.
 Visit the [Public Project Tracker](https://www.pivotaltracker.com/projects/928128/) to see what features are coming next.
 
 Report bugs and request features via [GitHub issues](https://github.com/joemasilotti/PebCiti/issues).
+
