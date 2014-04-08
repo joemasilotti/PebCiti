@@ -27,6 +27,3 @@ Visit the [Public Project Tracker](https://www.pivotaltracker.com/projects/92812
 
 Report bugs and request features via [GitHub issues](https://github.com/joemasilotti/PebCiti/issues).
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joemasilotti/pebciti/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
