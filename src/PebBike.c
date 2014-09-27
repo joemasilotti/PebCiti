@@ -3,15 +3,18 @@
 static Window *window;
 static TextLayer *focus_layer;
 static TextLayer *station_layer;
+static TextLayer *distance_layer;
 static uint8_t focusIsBike;
 static uint8_t vibrate;
+static uint8_t unit;
 static AppSync sync;
 static uint8_t sync_buffer[124];
 
 enum PebCitiKey {
     PEB_CITI_FOCUS_IS_BIKE_KEY = 0x0,
     PEB_CITI_STATION_KEY = 0x1,
-    PEB_CITI_VIBRATE_KEY = 0x2
+    PEB_CITI_VIBRATE_KEY = 0x2,
+	PEB_CITI_DISTANCE_KEY = 0x3
 };
 
 static void set_focus(uint8_t newFocusIsBike)
@@ -38,6 +41,9 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tup
             break;
         case PEB_CITI_VIBRATE_KEY:
             vibrate = new_tuple->value->uint8;
+            break;
+        case PEB_CITI_DISTANCE_KEY:
+			text_layer_set_text(distance_layer, new_tuple->value->cstring);
             break;
     }
 
@@ -66,7 +72,12 @@ static void window_load(Window *window)
     text_layer_set_font(focus_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
     layer_add_child(window_layer, text_layer_get_layer(focus_layer));
 
-    station_layer = text_layer_create(GRect(5, 30, 134, 65));
+	distance_layer = text_layer_create(GRect(5, 35, 134, 50));
+    text_layer_set_font(distance_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+    text_layer_set_text_alignment(distance_layer, GTextAlignmentCenter);
+    layer_add_child(window_layer, text_layer_get_layer(distance_layer));
+	
+    station_layer = text_layer_create(GRect(5, 55, 134, 90));
     text_layer_set_font(station_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
     text_layer_set_text_alignment(station_layer, GTextAlignmentCenter);
     layer_add_child(window_layer, text_layer_get_layer(station_layer));
@@ -90,11 +101,12 @@ static void init()
 
     focusIsBike = 1;
     vibrate = 0;
+	unit = 0;
 
     Tuplet initial_values[] = {
         TupletInteger(PEB_CITI_FOCUS_IS_BIKE_KEY, focusIsBike),
-        TupletCString(PEB_CITI_STATION_KEY, "Wating for iPhone app..."),
-        TupletInteger(PEB_CITI_VIBRATE_KEY, vibrate)
+        TupletCString(PEB_CITI_STATION_KEY, "Wating for phone app..."),
+		TupletCString(PEB_CITI_DISTANCE_KEY, "")
     };
 
     const int inbound_size = 124;

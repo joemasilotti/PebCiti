@@ -1,22 +1,32 @@
 {
-  "uuid": "f6bb82d0-b5bf-4ec7-a97a-405d3a350444",
-  "shortName": "PebCiti",
-  "longName": "PebCiti",
-  "companyName": "Masilotti.com",
-  "versionCode": 2,
-  "versionLabel": "1.0.2",
-  "watchapp": {
-    "watchface":false
-  },
-  "appKeys": { },
-  "resources": {
-    "media": [
-      {
-        "menuIcon": true,
-        "type": "png",
-        "name": "IMAGE_MENU_ICON",
-        "file": "images/menu_icon_pebciti.png"
-      }
-    ]
-  }
+    "appKeys": {
+        "distance": 3,
+        "focusIsBike": 0,
+        "stationKey": 1,
+        "vibrateKey": 2
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "TomasVitek.com",
+    "longName": "PebBike",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/menu_icon_pebbike.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            }
+        ]
+    },
+    "shortName": "PebBike",
+    "uuid": "41EAE1EA-9AD3-491E-A672-EE7EF4A6C6A3",
+    "versionCode": 1,
+    "versionLabel": "0.1",
+    "watchapp": {
+        "watchface": false
+    }
 }

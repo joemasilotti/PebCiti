@@ -1,0 +1,38 @@
+.item-link .item-title {
+	color: #AB3637;
+}
+
+.buttons-row {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.buttons-row .js-focus {
+	width: 50%;
+}
+
+.buttons-row .js-unit {
+	width: 50%;
+}
+
+.js-unit-buttons {
+	width:50%;
+}
+
+.button {
+	color: #AB3637;
+	border-color: #AB3637;
+}
+
+.button.active {
+	color: white;
+	background-color: #AB3637;
+}
+
+.item-title.inactive {
+	color: lightgrey;
+}
+
+#js-header {
+	display: none;
+}

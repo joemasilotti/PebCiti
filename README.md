@@ -1,42 +1,23 @@
-# ![iOS Icon](https://raw.github.com/joemasilotti/PebCiti/master/Icons/iOS.png) PebCiti
+# PebBike for Pebble
 
-A simple iOS app to show the nearest available [CitiBike NYC](http://citibikenyc.com/) dock on your [Pebble](https://getpebble.com/).
+PebBike is a simple Pebble app to show the nearest available bike hire dock or bike on your watch (works both in NYC and London).
 
-![iOS Screenshot](https://raw.github.com/joemasilotti/PebCiti/master/Screenshots/iOS.png)
-![Pebble Screenshot](https://raw.github.com/joemasilotti/PebCiti/master/Screenshots/Pebble.png)
+## Credit
 
-**UUID**: F6BB82D0-B5BF-4EC7-A97A-405D3A350444
+PebBike is javascript port of [PebCiti](https://github.com/joemasilotti/PebCiti) Pebble app created by [Joe Masilotti](http://masilotti.com/).
 
-## Installation
+## What does it do?
 
-### iOS
+While PebBike uses almost the same watch app as PebCiti, it replaces [the iOS companion app for PebCiti](https://github.com/joemasilotti/PebCiti-iOS) with a javascript code, which runs in the official Pebble app. Additionally PebBike works both with iOS and Android, since no companion app is required.
 
-* Join the TestFlight beta [testing group](http://tflig.ht/10N3HIH)
-* Or, build from source and run via Xcode
+## PebBike ❤️ New York City & Lodnon 
 
-### Pebble
-
-Open one of the following links on your iPhone.
-
-* [Pebble SDK 1.X](http://masilotti.com/PebCiti/SDK1.X/PebCiti.pbw)
-* [Pebble SDK 2.0](http://masilotti.com/PebCiti/SDK2.0/PebCiti.pbw)
-
-# PebCiti-Pebble
-
-Pebble half of [PebCiti](http://github.com/joemasilotti/PebCiti) ([iOS half](https://github.com/joemasilotti/PebCiti-iOS)), a simple app to show the nearest available [CitiBike NYC](http://citibikenyc.com/) dock on your [Pebble](https://getpebble.com/).
-
-**UUID**: F6BB82D0-B5BF-4EC7-A97A-405D3A350444
-
-# Quick Install
-
-Open one of the following links on your iPhone.
-
-* [Pebble SDK 1.X](http://masilotti.com/PebCiti/SDK1.X/PebCiti.pbw)
-* [Pebble SDK 2.0](http://masilotti.com/PebCiti/SDK2.0/PebCiti.pbw)
-
-## Contributing
-
-Visit the [Public Project Tracker](https://www.pivotaltracker.com/projects/928128/) to see what features are coming next.
+PebBike works with **CitiBike** in NYC and with **Barclays Cycle Hire** in London. If you want to add more cities, [add an issue](https://github.com/tomasvitek/PebBike/issues) or submit a pull request.
 
 Report bugs and request features via [GitHub issues](https://github.com/joemasilotti/PebCiti/issues).
+
+## Screenshots
+
+![iOS Screenshot](https://raw.github.com/tomasvitek/PebBike/master/screenshots/iOS.png)
+![Pebble Screenshot](https://raw.github.com/tomasvitek/PebBike/master/screenshots/Pebble.png)
 
