@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>PebBike</title>
+    <link rel="stylesheet" href="css/framework7.min.css">
+    <link rel="stylesheet" href="css/pebbike.css">
+  </head>
+  <body>
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="views">
+    <div class="view view-main">
+      <div class="navbar" id="js-header">
+        <div class="navbar-inner">
+          <div class="center sliding">PebBike</div>
+        </div>
+      </div>
+      <div class="pages js-pages">
+        <div data-page="index" class="page">
+          <div class="page-content">
+            <div class="content-block-title">Pebble</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="buttons-row">
+                        <a href="#" class="button js-focus active" data-focus="bike" id="js-focus-bike">Bike</a>
+                        <a href="#" class="button js-focus" data-focus="dock" id="js-focus-dock">Dock</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <!-- Doesn't make sence to not have it sent to Pebble
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Send Stations to Pebble?</div>
+                      <div class="item-after">
+                        <label class="label-switch">
+                          <input type="checkbox" id="js-send-to-pebble" />
+                          <div class="checkbox"></div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                -->
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Location</div>
+                      <div class="item-after js-unit-buttons">
+                        <div class="buttons-row">
+                          <a href="#" class="button js-loc active" data-loc="ny" id="js-loc-ny">NY</a>
+                          <a href="#" class="button js-loc" data-loc="london" id="js-loc-london">London</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Distance units</div>
+                      <div class="item-after js-unit-buttons">
+                        <div class="buttons-row">
+                          <a href="#" class="button js-unit active" data-unit="mi" id="js-unit-mi">mi</a>
+                          <a href="#" class="button js-unit" data-unit="km" id="js-unit-km">km</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title inactive" id="js-vibrate-title">Vibrate Pebble?</div>
+                      <div class="item-after">
+                        <label class="label-switch">
+                          <input type="checkbox" id="js-vibrate" />
+                          <div class="checkbox"></div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!--
+
+            // IMHO not required, as it's also shown on the watch,
+            // if settings page is opened
+
+            <div class="content-block-title">Current location</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title" id="js-location"></div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="content-block-title">Closest station</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title" id="js-closest-station">Station name</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a href="form.html" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">View All Stations</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            -->
+            <div class="content-block-title">Authors</div>
+            <div class="list-block">
+              <ul>
+                <li>
+                  <a href="http://masilotti.com" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Joe Masilotti</div>
+                        <div class="item-after">masilotti.com</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://tomasvitek.com" target="_blank" class="item-link item-content">
+                    <div class="item-inner">
+                      <div class="item-title">Tomas Vitek</div>
+                      <div class="item-after">tomasvitek.com</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="content-block">
+              <div class="row">
+                <div class="col-50"><a href="#" class="button button-big active" id="js-button-save">Save</a></div>
+                <div class="col-50"><a href="#" class="button button-big" id="js-button-cancel">Cancel</a></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/pebbike.js"></script>
+  </body>
+</html>
