@@ -10,7 +10,7 @@ loc = decodeURIComponent(loc);
 
 $(document).ready(function () {
     if (!navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-        $('#header').show();
+        $('#js-header').show();
         $('.js-pages').addClass('navbar-through');
         $('.js-pages').addClass('toolbar-through');
     }
