@@ -10,11 +10,11 @@ static uint8_t unit;
 static AppSync sync;
 static uint8_t sync_buffer[124];
 
-enum PebCitiKey {
-    PEB_CITI_FOCUS_IS_BIKE_KEY = 0x0,
-    PEB_CITI_STATION_KEY = 0x1,
-    PEB_CITI_VIBRATE_KEY = 0x2,
-	PEB_CITI_DISTANCE_KEY = 0x3
+enum PebBikeKey {
+    PEB_BIKE_FOCUS_IS_BIKE_KEY = 0x0,
+    PEB_BIKE_STATION_KEY = 0x1,
+    PEB_BIKE_VIBRATE_KEY = 0x2,
+	PEB_BIKE_DISTANCE_KEY = 0x3
 };
 
 static void set_focus(uint8_t newFocusIsBike)
@@ -33,16 +33,16 @@ static void set_focus(uint8_t newFocusIsBike)
 static void sync_tuple_changed_callback(const uint32_t key, const Tuple *new_tuple, const Tuple *old_tuple, void *context)
 {
     switch (key) {
-        case PEB_CITI_FOCUS_IS_BIKE_KEY:
+        case PEB_BIKE_FOCUS_IS_BIKE_KEY:
             set_focus(new_tuple->value->uint8);
             break;
-        case PEB_CITI_STATION_KEY:
+        case PEB_BIKE_STATION_KEY:
             text_layer_set_text(station_layer, new_tuple->value->cstring);
             break;
-        case PEB_CITI_VIBRATE_KEY:
+        case PEB_BIKE_VIBRATE_KEY:
             vibrate = new_tuple->value->uint8;
             break;
-        case PEB_CITI_DISTANCE_KEY:
+        case PEB_BIKE_DISTANCE_KEY:
 			text_layer_set_text(distance_layer, new_tuple->value->cstring);
             break;
     }
@@ -104,9 +104,9 @@ static void init()
 	unit = 0;
 
     Tuplet initial_values[] = {
-        TupletInteger(PEB_CITI_FOCUS_IS_BIKE_KEY, focusIsBike),
-        TupletCString(PEB_CITI_STATION_KEY, "Wating for phone app..."),
-		TupletCString(PEB_CITI_DISTANCE_KEY, "")
+        TupletInteger(PEB_BIKE_FOCUS_IS_BIKE_KEY, focusIsBike),
+        TupletCString(PEB_BIKE_STATION_KEY, "Wating for phone app..."),
+		TupletCString(PEB_BIKE_DISTANCE_KEY, "")
     };
 
     const int inbound_size = 124;

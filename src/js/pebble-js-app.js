@@ -15,7 +15,7 @@
  *
  * @type string
  */
-var SETTINGS_URL = 'http://dev.tomasvitek.com/pebble/preferences/';
+var SETTINGS_URL = 'http://pebbike.tomasvitek.com/preferences/';
 
 /**
  * Citi bikes API url
@@ -59,11 +59,12 @@ function fetchStations(location) {
     req.onload = function (e) {
         if (req.readyState == 4) {
             if (req.status == 200) {
+				var response = JSON.parse(req.responseText);
 				if (loc == 'ny') {
-					processNY(req.responseText, location);
+					processNY(response, location);
 				} 
 				else {
-					processNY(req.responseText, location);
+					processLondon(response, location);
 				}
             }
             // Server didn't respond with 200
@@ -82,13 +83,10 @@ function fetchStations(location) {
  * 
  * @param obj response
  */
-function processNY(responseText, location) {
-    var focus = localStorage.getItem("focus") || 'bike';
+function processNY(response, location) {
+	var focus = localStorage.getItem("focus") || 'bike';
     var vibrate = localStorage.getItem("vibrate") || true;
 	var unit = localStorage.getItem("unit") || 'mi';
-	
-	console.log(responseText);
-	var response = JSON.parse(responseText);
 
 	// Wrong format of the reponse, send over the error
 	if (!response || 
@@ -105,6 +103,14 @@ function processNY(responseText, location) {
 	response.stationBeanList.forEach(function (station) {
 		if (station.testStation === false &&
 			station.statusKey !== 1) {
+			return;
+		}
+		
+		if (station.availableBikes === 0 && focus == 'bike') {
+			return;
+		}
+		
+		if (station.availableDocks === 0 && focus == 'dock') {
 			return;
 		}
 
@@ -149,8 +155,70 @@ function processNY(responseText, location) {
  * 
  * @param obj response
  */
-function processLondon(response) {
-	
+function processLondon(response, location) {
+	var focus = localStorage.getItem("focus") || 'bike';
+    var vibrate = localStorage.getItem("vibrate") || true;
+	var unit = localStorage.getItem("unit") || 'mi';
+
+	// Wrong format of the reponse, send over the error
+	if (!response || 
+		!response.hasOwnProperty('updatedOn') || 
+		response.dockStation.length === 0) {
+		console.error('Error: The response from server is wrongly formatted.');
+		// TODO: Send a message to Pebble and diplay error message
+		return;
+	}
+
+	var distanceToClosestSt = Number.MAX_VALUE;
+	var closestStation = null;
+
+	response.dockStation.forEach(function (station) {
+		if (station.installed === "false" &&
+			station.statusKey !== "true") {
+			return;
+		}
+		
+		if (station.bikesAvailable === 0 && focus == 'bike') {
+			return;
+		}
+		
+		if (station.emptySlots === 0 && focus == 'dock') {
+			return;
+		}
+
+		var loc = { 
+			latitude: station.latitude, 
+			longitude: station.longitude 
+		};
+		var dist = getDistance(location, loc);
+
+		if (closestStation === null) {
+			distanceToClosestSt = dist;
+			closestStation = station;
+		} 
+		else if (dist < distanceToClosestSt) {
+			distanceToClosestSt = dist;
+			closestStation = station;
+		}
+	});
+
+	var distance = _round(distanceToClosestSt, 2) + ' km';
+	if (unit === 'mi') {
+		distance = _round(_km2miles(distanceToClosestSt), 2) + ' mi';
+	}
+
+	var focusIsBike = 1;
+	if (focus === 'dock') {
+		focusIsBike = 0;
+	}
+
+	console.log('Closest station ' + closestStation.name);
+	Pebble.sendAppMessage({
+		"focusIsBike": focusIsBike,
+		"stationKey": closestStation.name,
+		"vibrateKey": (vibrate ? 1 : 0),
+		"distance": distance
+	});
 }
 
 /**
@@ -228,8 +296,8 @@ function locationError(err) {
  * Opens HTML page with settings with data from local storage.
  * (HTML source code for the settings page is )
  */
-Pebble.addEventListener("showConfiguration", function () {
-    var focus = localStorage.getItem("focus") || 'bike';
+Pebble.addEventListener("showConfiguration", function () {	
+	var focus = localStorage.getItem("focus") || 'bike';
     var vibrate = localStorage.getItem("vibrate") || true;
 	var unit = localStorage.getItem("unit") || 'mi';
     var loc = localStorage.getItem("loc") || ((locationCache.longitude > -30) ? 'london' : 'ny');
@@ -264,6 +332,17 @@ Pebble.addEventListener("webviewclosed", function (e) {
  */
 Pebble.addEventListener("appmessage", function (e) {
     console.log("Received message: " + e.payload);
+	
+	localStorage.setItem("focus", e.payload.focus);
+	
+	Pebble.sendAppMessage({
+		"focusIsBike": e.payload.focus,
+		"stationKey": "Wating for phone app...",
+		"vibrateKey": 0,
+		"distance": ""
+	});
+	
+	window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
 });
 
 /**
