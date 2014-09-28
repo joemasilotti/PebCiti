@@ -4,7 +4,7 @@ PebBike is a simple Pebble app to show the nearest available bike hire dock or b
 
 ## Credit
 
-PebBike is javascript port of [PebCiti](https://github.com/joemasilotti/PebCiti) Pebble app created by [Joe Masilotti](http://masilotti.com/).
+PebBike is javascript port of [PebCiti](https://github.com/joemasilotti/PebCiti) Pebble app created by [Tomas Vitek](http://tomasvitek.com/). [PebCiti](https://github.com/joemasilotti/PebCiti) was originally created by [Joe Masilotti](http://masilotti.com/).
 
 ## What does it do?
 
