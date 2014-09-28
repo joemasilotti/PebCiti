@@ -18,6 +18,6 @@ Report bugs and request features via [GitHub issues](https://github.com/joemasil
 
 ## Screenshots
 
-![iOS Screenshot](https://raw.github.com/tomasvitek/PebBike/master/screenshots/iOS.png)
-![Pebble Screenshot](https://raw.github.com/tomasvitek/PebBike/master/screenshots/Pebble.png)
+![iOS Screenshot](https://raw.github.com/tomasvitek/PebBike/master/screenshots/iOS.png =403x706)
+![Pebble Screenshot](https://raw.github.com/tomasvitek/PebBike/master/screenshots/Pebble.png =181x290)
 
