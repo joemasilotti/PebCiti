@@ -40,6 +40,11 @@ var locationOptions = {
 var locationCache = null;
 
 /**
+ * Location watch
+ */
+var watchId = null;
+
+/**
  * Fetches directions from Citi API, sends data to Pebble.
  */
 function fetchStations(location) {
@@ -75,6 +80,7 @@ function fetchStations(location) {
         }
     };
     req.send(null);
+	navigator.geolocation.clearWatch(watchId);
 }
 
 /**
@@ -131,12 +137,12 @@ function processNY(response, location) {
 	});
 
 	var distance = _round(distanceToClosestSt, 2) + ' km';
-	if (unit === 'mi') {
+	if (unit == 'mi') {
 		distance = _round(_km2miles(distanceToClosestSt), 2) + ' mi';
 	}
 
 	var focusIsBike = 1;
-	if (focus === 'dock') {
+	if (focus == 'dock') {
 		focusIsBike = 0;
 	}
 
@@ -203,12 +209,12 @@ function processLondon(response, location) {
 	});
 
 	var distance = _round(distanceToClosestSt, 2) + ' km';
-	if (unit === 'mi') {
+	if (unit == 'mi') {
 		distance = _round(_km2miles(distanceToClosestSt), 2) + ' mi';
 	}
 
 	var focusIsBike = 1;
-	if (focus === 'dock') {
+	if (focus == 'dock') {
 		focusIsBike = 0;
 	}
 
@@ -324,7 +330,10 @@ Pebble.addEventListener("webviewclosed", function (e) {
     localStorage.setItem("unit", options.unit);
 	localStorage.setItem("loc", options.loc);
 
-    window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
+	if (watchId) {
+		navigator.geolocation.clearWatch(watchId);
+	}
+    watchId = navigator.geolocation.watchPosition(locationSuccess, locationError, locationOptions);
 });
 
 /**
@@ -333,16 +342,24 @@ Pebble.addEventListener("webviewclosed", function (e) {
 Pebble.addEventListener("appmessage", function (e) {
     console.log("Received message: " + e.payload);
 	
-	localStorage.setItem("focus", e.payload.focus);
+	var focus = 'bike';
+	if (e.payload.focusIsBike === 0) {
+		focus = 'dock';
+	} 
+	
+	localStorage.setItem("focus", focus);
 	
 	Pebble.sendAppMessage({
-		"focusIsBike": e.payload.focus,
+		"focusIsBike": e.payload.focusIsBike,
 		"stationKey": "Wating for phone app...",
 		"vibrateKey": 0,
 		"distance": ""
 	});
-	
-	window.navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
+
+	if (watchId) {
+		navigator.geolocation.clearWatch(watchId);
+	}
+    watchId = navigator.geolocation.watchPosition(locationSuccess, locationError, locationOptions);
 });
 
 /**
@@ -350,5 +367,9 @@ Pebble.addEventListener("appmessage", function (e) {
  */
 Pebble.addEventListener("ready", function (e) {
     console.log("JS app has been started!");
-    window.navigator.geolocation.watchPosition(locationSuccess, locationError, locationOptions);
+	
+	if (watchId) {
+		navigator.geolocation.clearWatch(watchId);
+	}
+    watchId = navigator.geolocation.watchPosition(locationSuccess, locationError, locationOptions);
 });
