@@ -10,7 +10,7 @@ static uint8_t unit;
 static AppSync sync;
 static uint8_t sync_buffer[124];
 
-enum PebBikeKey {
+enum PebCitiKey {
     PEB_BIKE_FOCUS_IS_BIKE_KEY = 0x0,
     PEB_BIKE_STATION_KEY = 0x1,
     PEB_BIKE_VIBRATE_KEY = 0x2,
@@ -76,7 +76,7 @@ static void window_load(Window *window)
     text_layer_set_font(distance_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
     text_layer_set_text_alignment(distance_layer, GTextAlignmentCenter);
     layer_add_child(window_layer, text_layer_get_layer(distance_layer));
-	
+
     station_layer = text_layer_create(GRect(5, 55, 134, 90));
     text_layer_set_font(station_layer, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
     text_layer_set_text_alignment(station_layer, GTextAlignmentCenter);

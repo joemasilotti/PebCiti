@@ -9,23 +9,23 @@
         "location",
         "configurable"
     ],
-    "companyName": "TomasVitek.com",
-    "longName": "PebBike",
+    "companyName": "Masilotti.com",
+    "longName": "PebCiti",
     "projectType": "native",
     "resources": {
         "media": [
             {
-                "file": "images/menu_icon_pebbike.png",
+                "file": "images/menu_icon_pebciti.png",
                 "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
                 "type": "png"
             }
         ]
     },
-    "shortName": "PebBike",
-    "uuid": "41EAE1EA-9AD3-491E-A672-EE7EF4A6C6A3",
-    "versionCode": 1,
-    "versionLabel": "0.1",
+    "shortName": "PebCiti",
+    "uuid": "f6bb82d0-b5bf-4ec7-a97a-405d3a350444",
+    "versionCode": 3,
+    "versionLabel": "2.0.0",
     "watchapp": {
         "watchface": false
     }

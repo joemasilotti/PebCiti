@@ -15,7 +15,7 @@
  *
  * @type string
  */
-var SETTINGS_URL = 'http://pebbike.tomasvitek.com/preferences/';
+var SETTINGS_URL = 'http://pebciti.tomasvitek.com/preferences/';
 
 /**
  * Citi bikes API url
@@ -49,16 +49,16 @@ var watchId = null;
  */
 function fetchStations(location) {
 	locationCache = location;
-	
+
 	var loc = localStorage.getItem("loc") || ((location.longitude > -30) ? 'london' : 'ny');
-    
+
 	var url = DOCKS_API_URL_NY;
 	if (loc == 'london') {
 		url = DOCKS_API_URL_LONDON;
-	} 
-	
+	}
+
 	console.log('Opening API: ' + url);
-	
+
 	var req = new XMLHttpRequest();
     req.open('GET', url, true);
     req.onload = function (e) {
@@ -67,7 +67,7 @@ function fetchStations(location) {
 				var response = JSON.parse(req.responseText);
 				if (loc == 'ny') {
 					processNY(response, location);
-				} 
+				}
 				else {
 					processLondon(response, location);
 				}
@@ -86,7 +86,7 @@ function fetchStations(location) {
 /**
  * Processes response from the dock API
  * for NY
- * 
+ *
  * @param obj response
  */
 function processNY(response, location) {
@@ -95,8 +95,8 @@ function processNY(response, location) {
 	var unit = localStorage.getItem("unit") || 'mi';
 
 	// Wrong format of the reponse, send over the error
-	if (!response || 
-		!response.hasOwnProperty('executionTime') || 
+	if (!response ||
+		!response.hasOwnProperty('executionTime') ||
 		response.stationBeanList.length === 0) {
 		console.error('Error: The response from server is wrongly formatted.');
 		// TODO: Send a message to Pebble and diplay error message
@@ -111,25 +111,25 @@ function processNY(response, location) {
 			station.statusKey !== 1) {
 			return;
 		}
-		
+
 		if (station.availableBikes === 0 && focus == 'bike') {
 			return;
 		}
-		
+
 		if (station.availableDocks === 0 && focus == 'dock') {
 			return;
 		}
 
-		var loc = { 
-			latitude: station.latitude, 
-			longitude: station.longitude 
+		var loc = {
+			latitude: station.latitude,
+			longitude: station.longitude
 		};
 		var dist = getDistance(location, loc);
 
 		if (closestStation === null) {
 			distanceToClosestSt = dist;
 			closestStation = station;
-		} 
+		}
 		else if (dist < distanceToClosestSt) {
 			distanceToClosestSt = dist;
 			closestStation = station;
@@ -158,7 +158,7 @@ function processNY(response, location) {
 /**
  * Processes response from the dock API
  * for London
- * 
+ *
  * @param obj response
  */
 function processLondon(response, location) {
@@ -167,8 +167,8 @@ function processLondon(response, location) {
 	var unit = localStorage.getItem("unit") || 'mi';
 
 	// Wrong format of the reponse, send over the error
-	if (!response || 
-		!response.hasOwnProperty('updatedOn') || 
+	if (!response ||
+		!response.hasOwnProperty('updatedOn') ||
 		response.dockStation.length === 0) {
 		console.error('Error: The response from server is wrongly formatted.');
 		// TODO: Send a message to Pebble and diplay error message
@@ -183,25 +183,25 @@ function processLondon(response, location) {
 			station.statusKey !== "true") {
 			return;
 		}
-		
+
 		if (station.bikesAvailable === 0 && focus == 'bike') {
 			return;
 		}
-		
+
 		if (station.emptySlots === 0 && focus == 'dock') {
 			return;
 		}
 
-		var loc = { 
-			latitude: station.latitude, 
-			longitude: station.longitude 
+		var loc = {
+			latitude: station.latitude,
+			longitude: station.longitude
 		};
 		var dist = getDistance(location, loc);
 
 		if (closestStation === null) {
 			distanceToClosestSt = dist;
 			closestStation = station;
-		} 
+		}
 		else if (dist < distanceToClosestSt) {
 			distanceToClosestSt = dist;
 			closestStation = station;
@@ -228,27 +228,27 @@ function processLondon(response, location) {
 }
 
 /**
- * Compute distance of two {lon, lat} points 
+ * Compute distance of two {lon, lat} points
  * on a sphere
- * 
+ *
  * @return int distance in km
  */
 function getDistance(pointA, pointB) {
   var R = 6371; // Radius of the earth in km
   var dLat = _deg2rad(pointB.latitude-pointA.latitude);  // deg2rad below
-  var dLon = _deg2rad(pointB.longitude-pointA.longitude); 
-  var a = 
+  var dLon = _deg2rad(pointB.longitude-pointA.longitude);
+  var a =
     Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(_deg2rad(pointA.latitude)) * Math.cos(_deg2rad(pointB.latitude)) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2); 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    Math.cos(_deg2rad(pointA.latitude)) * Math.cos(_deg2rad(pointB.latitude)) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c; // Distance in km
   return d;
 }
 
 /**
  * Utility function to convert degrees to radians
- * 
+ *
  * @param  int angle in degrees
  * @return int angle in radians
  */
@@ -259,7 +259,7 @@ function _deg2rad(deg) {
 /**
  * Utility function to round a number
  * to given decimals
- * 
+ *
  * @param  float num
  * @param  int decimals
  * @return float
@@ -270,7 +270,7 @@ function _round(num, decimals) {
 
 /**
  * Utility function to convert km to miles
- * 
+ *
  * @param  int km
  * @return int miles
  */
@@ -302,13 +302,13 @@ function locationError(err) {
  * Opens HTML page with settings with data from local storage.
  * (HTML source code for the settings page is )
  */
-Pebble.addEventListener("showConfiguration", function () {	
+Pebble.addEventListener("showConfiguration", function () {
 	var focus = localStorage.getItem("focus") || 'bike';
     var vibrate = localStorage.getItem("vibrate") || true;
 	var unit = localStorage.getItem("unit") || 'mi';
     var loc = localStorage.getItem("loc") || ((locationCache.longitude > -30) ? 'london' : 'ny');
 
-    var url = SETTINGS_URL + '?focus=' + encodeURIComponent(focus) + 
+    var url = SETTINGS_URL + '?focus=' + encodeURIComponent(focus) +
 							'&vibrate=' + encodeURIComponent(vibrate) +
 							'&unit=' + encodeURIComponent(unit) +
 							'&loc=' + encodeURIComponent(loc);
@@ -341,14 +341,14 @@ Pebble.addEventListener("webviewclosed", function (e) {
  */
 Pebble.addEventListener("appmessage", function (e) {
     console.log("Received message: " + e.payload);
-	
+
 	var focus = 'bike';
 	if (e.payload.focusIsBike === 0) {
 		focus = 'dock';
-	} 
-	
+	}
+
 	localStorage.setItem("focus", focus);
-	
+
 	Pebble.sendAppMessage({
 		"focusIsBike": e.payload.focusIsBike,
 		"stationKey": "Wating for phone app...",
@@ -367,7 +367,7 @@ Pebble.addEventListener("appmessage", function (e) {
  */
 Pebble.addEventListener("ready", function (e) {
     console.log("JS app has been started!");
-	
+
 	if (watchId) {
 		navigator.geolocation.clearWatch(watchId);
 	}
