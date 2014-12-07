@@ -25,7 +25,7 @@
     "shortName": "PebCiti",
     "uuid": "f6bb82d0-b5bf-4ec7-a97a-405d3a350444",
     "versionCode": 3,
-    "versionLabel": "2.0.0",
+    "versionLabel": "2.0",
     "watchapp": {
         "watchface": false
     }
